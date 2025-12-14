@@ -29,6 +29,16 @@ example::
    ...     print('More')
    ...
    More
+# Practical example: check if a number is even or odd
+::
+
+   x = int(input("Enter a number: "))
+   if x % 2 == 0:
+       print(f"{x} is even")
+   else:
+       print(f"{x} is odd")
+
+
 
 There can be zero or more :keyword:`elif` parts, and the :keyword:`else` part is
 optional.  The keyword ':keyword:`!elif`' is short for 'else if', and is useful
@@ -236,8 +246,18 @@ which searches for prime numbers::
    8 equals 2 * 4
    9 equals 3 * 3
 
+# Practical example: count the vowels in a list of words
+::
+
+   words = ['cat', 'dog', 'bird']
+   for word in words:
+       vowels = sum(1 for c in word if c in 'aeiou')
+       print(f"{word} contains {vowels} vowels")
+
+
 (Yes, this is the correct code.  Look closely: the ``else`` clause belongs to
 the ``for`` loop, **not** the ``if`` statement.)
+
 
 One way to think of the else clause is to imagine it paired with the ``if``
 inside the loop.  As the loop executes, it will run a sequence like
@@ -1005,6 +1025,15 @@ scope::
    >>> f(1)
    43
 
+   # Practical example: sorting a list of tuples by the second element
+   >>> pairs = [(1, 'one'), (3, 'three'), (2, 'two')]
+   >>> pairs.sort(key=lambda p: p[1])
+   >>> print(pairs)
+   [(1, 'one'), (2, 'two'), (3, 'three')]
+
+
+
+
 The above example uses a lambda expression to return a function.  Another use
 is to pass a small function as an argument.  For instance, :meth:`list.sort`
 takes a sorting key function *key* which can be a lambda function::
@@ -1014,6 +1043,52 @@ takes a sorting key function *key* which can be a lambda function::
    >>> pairs
    [(4, 'four'), (1, 'one'), (3, 'three'), (2, 'two')]
 
+
+
+
+Type Hints (Annotations)
+-----------------------
+
+Python supports **type hints** (also called annotations) to indicate the expected types of function arguments and return values. They help improve readability and can be used by static type checkers like `mypy`::
+
+   >>> def greet(name: str, age: int) -> str:
+   ...     return f"Hello {name}, you are {age} years old."
+   ...
+   >>> greet("Alice", 30)
+   'Hello Alice, you are 30 years old.'
+
+
+
+Before / After Comparison
+-------------------------
+
+You can illustrate improvements in code with a before/after example. For instance, rewriting a loop using a comprehension::
+
+   # Before: using a loop
+   >>> squares = []
+   >>> for x in range(5):
+   ...     squares.append(x * x)
+   >>> squares
+   [0, 1, 4, 9, 16]
+
+   # After: using a list comprehension
+   >>> squares = [x * x for x in range(5)]
+   >>> squares
+   [0, 1, 4, 9, 16]
+
+
+
+Quick Function Test
+------------------
+
+You can quickly test a function and even assert correctness::
+
+   >>> def square(x: int) -> int:
+   ...     return x * x
+   ...
+   >>> print(square(5))  # 25
+   25
+   >>> assert square(3) == 9
 
 .. _tut-docstrings:
 
@@ -1159,3 +1234,29 @@ extracted for you:
 .. [#] Actually, *call by object reference* would be a better description,
    since if a mutable object is passed, the caller will see any changes the
    callee makes to it (items inserted into a list).
+
+Try / Except Statements
+----------------------
+
+Python allows you to handle exceptions (errors) using **try / except** blocks.
+This helps prevent your program from crashing and lets you respond to errors gracefully::
+
+   >>> try:
+   ...     x = int(input("Enter a number: "))
+   ...     print(f"You entered {x}")
+   ... except ValueError:
+   ...     print("That's not a valid number!")
+
+# Practical example: division with error handling
+>>> def safe_divide(a: int, b: int) -> float:
+...     try:
+...         return a / b
+...     except ZeroDivisionError:
+...         print("Cannot divide by zero!")
+...         return 0.0
+...
+>>> safe_divide(10, 2)
+5.0
+>>> safe_divide(5, 0)
+Cannot divide by zero!
+0.0

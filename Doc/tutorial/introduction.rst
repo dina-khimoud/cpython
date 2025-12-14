@@ -135,6 +135,26 @@ and uses the ``j`` or ``J`` suffix to indicate the imaginary part
 (e.g. ``3+5j``).
 
 
+Additional Examples
+-------------------
+
+Here are some extra examples to illustrate how variables and numeric types work in Python:
+
+.. code-block:: python
+
+   x = 10
+   y = 3.5
+   print("Type of x:", type(x))
+   print("Type of y:", type(y))
+   print("Sum:", x + y)
+   print("Product:", x * y)
+   print("Integer division:", x // 3)
+   print("Float division:", x / 3)
+   import math
+   print("Square of x:", math.pow(x, 2))
+   print("Square root of 16:", math.sqrt(16))
+
+
 .. _tut-strings:
 
 Text
@@ -380,6 +400,31 @@ The built-in function :func:`len` returns the length of a string::
       the left operand of the ``%`` operator are described in more detail here.
 
 
+
+
+Additional String Examples
+--------------------------
+
+Here are some additional examples demonstrating string manipulation in Python:
+
+.. code-block:: python
+
+   name = "Python"
+   print("Hello", name)
+   print("Uppercase:", name.upper())
+   print("Lowercase:", name.lower())
+   print("First letter:", name[0])
+   print("String length:", len(name))
+   message = "Learning " + name + " is fun!"
+   print(message)
+   version = 3.11
+   print(f"Language: {name}, Version: {version}")
+   text = """Python is a language that is:
+   - Simple
+   - Powerful
+   - Versatile"""
+   print(text)
+
 .. _tut-lists:
 
 Lists
@@ -488,6 +533,28 @@ example::
    ['a', 'b', 'c']
    >>> x[0][1]
    'b'
+
+
+
+Additional List Examples
+------------------------
+
+Here are some simple examples showing how to create and manipulate lists in Python:
+
+.. code-block:: python
+
+   fruits = ["apple", "banana", "strawberry"]
+   fruits.append("kiwi")
+   print("First fruit:", fruits[0])
+   for fruit in fruits:
+       print("Fruit:", fruit)
+   print("Total number of fruits:", len(fruits))
+   fruits.remove("banana")
+   print("After removal:", fruits)
+   fruits.sort()
+   print("Sorted list:", fruits)
+   fruits.reverse()
+   print("Reversed list:", fruits)
 
 .. _tut-firststeps:
 
